@@ -2,9 +2,10 @@
 <p>
 
 ### 🏠 [Homepage](<%= https://github.com/gamespark/test-project %>)
-
+https://github.com/gamespark/test-project
+  
 ### ✨ [Demo](<%= http://14.29.215.140:9001/ %>)
-
+[Demo Address](http://14.29.215.140:9001/)
 
 ## Build & Debug in dev:
 
