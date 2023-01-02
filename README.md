@@ -7,6 +7,16 @@ https://github.com/gamespark/test-project
 ### ✨ [Demo](<%= http://14.29.215.140:9001/ %>)
 [Demo Address](http://14.29.215.140:9001/)
 
+## System Architecture:
+
+```sh
+  	Web Host: node + hapijs -- SSR
+	Web Page: react + mobx
+	Packaging tool: webpack
+	UT: jest + @testing-library/react
+	Code check: eslint + prettier
+```
+
 ## Build & Debug in dev:
 
 ```sh
