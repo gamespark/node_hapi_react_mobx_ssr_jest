@@ -2,9 +2,11 @@
 <p>
 
 ### 🏠 [Homepage](<%= https://github.com/gamespark/test-project %>)
+
 https://github.com/gamespark/test-project
-  
+
 ### ✨ [Demo](<%= http://14.29.215.140:9001/ %>)
+
 [Demo Address](http://14.29.215.140:9001/)
 
 ## System Architecture:
@@ -34,7 +36,7 @@ OR
 OR
   	1. npm run server
 ```
-  
+
 ## Run in docker:
 
 ```sh
@@ -43,7 +45,7 @@ Build docker image:
 Run in docker container:
   	docker run -d --name testproject -p 3000:3000 testproject:1.0
 ```
-  
+
 ## Auto format code and fix eslint error:
 
 ```sh
