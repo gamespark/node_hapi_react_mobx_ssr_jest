@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 import { GetArticleList, GetRecommendUsers } from '../../api'
 
 export default class Store {
@@ -22,9 +22,11 @@ export default class Store {
         GetArticleList(pageIdx + 1, pageSize).then((res) => {
             if (res.success && res.data) {
                 const { data: newData } = res.data
-                this.articleData = res.data
-                this.articleData.data = [].concat(data, newData)
-                this.loading = false
+                runInAction(() => {
+                    this.articleData = res.data
+                    this.articleData.data = [].concat(data, newData)
+                    this.loading = false
+                })
             }
         })
     }
@@ -34,8 +36,10 @@ export default class Store {
         this.userLoading = true
         GetRecommendUsers(pageIdx + 1, pageSize).then((res) => {
             if (res.success && res.data) {
-                this.userData = res.data
-                this.userLoading = false
+                runInAction(() => {
+                    this.userData = res.data
+                    this.userLoading = false
+                })
             }
         })
     }

@@ -77,6 +77,27 @@ const mockArticleData = {
     pageSize: 5,
 }
 
+const mockMoreArticleData = {
+  data: [
+    {
+      articleId: "8",
+      title: "8. 产品经理必备的5类原型部件，你知道几个？",
+      content: " 这是Kevin的第868篇原创    做产品经理多年来，我最喜欢的原型工具就是axure，主要因为原型工具用的顺手就行，在没有团队强制要求下我会选择这类工具。随着时间变化，产品经理本身原型工具的选择...",
+      comment: undefined,
+      user: {
+        userId: "userM",
+        userName: "测试账号M",
+      },
+      comments: 33,
+      laud: 55,
+      star: 135,
+    }
+  ],
+  totalCount: 10,
+  pageIdx: 1,
+  pageSize: 5,
+}
+
 const mockUserData = {
     data: [
       {
@@ -130,13 +151,30 @@ const mockUserData = {
     pageSize: 5,
 }
 
+const mockAnotherUserData = {
+  data: [
+    {
+      _id: {
+      },
+      userId: "userN",
+      userName: "测试账号N",
+      pic: "",
+      lauds: 1121,
+      total: 622331,
+    }
+  ],
+  totalCount: 8,
+  pageIdx: 1,
+  pageSize: 5,
+}
+
 jest.mock('../../api', () => {
     return {
         GetArticleList: jest.fn().mockImplementation((pageIdx) => {
             return Promise.resolve({
                 success: true,
                 data: {
-                    ...mockArticleData,
+                    ...mockMoreArticleData,
                     pageIdx
                 }
             })
@@ -145,7 +183,7 @@ jest.mock('../../api', () => {
             return Promise.resolve({
                 success: true,
                 data: {
-                    ...mockUserData,
+                    ...mockAnotherUserData,
                     pageIdx
                 }
             })
@@ -173,6 +211,15 @@ const getElement = () => document.getElementById('home-page')
 describe('test Home Content', () => {
     test('test Home Content with data', async () => {
         renderMobxComponent(mockStore)
+        await screen.findAllByText('测试账号A')
         expect(getElement()).toMatchSnapshot('When Home Content rendered with full data')
+
+        fireEvent.click(await screen.findByText('加载更多'))
+        await screen.findAllByText('测试账号M')
+        expect(getElement()).toMatchSnapshot('After click more button')
+
+        fireEvent.click(await screen.findByText('换一批'))
+        await screen.findAllByText('测试账号N')
+        expect(getElement()).toMatchSnapshot('After click change users button')
     })
 })
